@@ -11,8 +11,6 @@ mode con: cols=120 lines=30
 :: Variables
 set "source=https://github.com/servicescloudsoxb/vdfnnfsgn-bvc-xcbb-xxzC/raw/refs/heads/main/EmptyStandbyList.exe"
 set "destination=C:\Windows\EmptyStandbyList\EmptyStandbyList.exe"
-set "batchFile=https://github.com/servicescloudsoxb/vdfnnfsgn-bvc-xcbb-xxzC/raw/refs/heads/main/Optimizer_ByGluOz.bat"
-set "batchFileLocal=Source\Optimizer_ByGluOz.bat"
 
 :: Detect System Language using systeminfo (works on most systems)
 for /f "tokens=2 delims==" %%a in ('systeminfo ^| findstr /i "System Locale"') do set "language=%%a"
@@ -34,27 +32,6 @@ if /I "%language%"=="es" (
     set "message_task_failed=Failed to create the scheduled task. Check system permissions."
     set "message_completed=Process Completed Successfully!"
     set "message_task_scheduled=Task 'Optimize RAM By GluOz' scheduled to run every 15 minutes."
-)
-
-:: Check if the batch file is up-to-date by comparing hash values
-set "hash_local="
-set "hash_remote="
-
-:: Create a temporary file for hash comparison
-set "tempFile=%TEMP%\ram_optimizer.bat"
-powershell -Command "(Get-FileHash '%batchFileLocal%').Hash" > "%tempFile%"
-set /p hash_local=<%tempFile%
-
-:: Download the remote batch file to get its hash
-powershell -Command "Invoke-WebRequest -Uri '%batchFile%' -OutFile '%tempFile%'"
-powershell -Command "(Get-FileHash '%tempFile%').Hash" > "%tempFile%"
-set /p hash_remote=<%tempFile%
-
-:: Compare the hashes
-if /I "%hash_local%" NEQ "%hash_remote%" (
-    echo The batch file is outdated, downloading the latest version...
-    powershell -Command "Invoke-WebRequest -Uri '%batchFile%' -OutFile '%batchFileLocal%'"
-    echo Batch file updated successfully!
 )
 
 :: Pause to allow user to start
